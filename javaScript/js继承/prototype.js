@@ -1,0 +1,27 @@
+// 原型链继承
+// 优点：
+// 1. 能够访问到父类原型上的属性
+// 缺点：
+// 1.实例共享原型上的引用属性
+// 2.创建子类实力时无法向父类构造函数传参
+function Person() {}
+
+Person.prototype.name = 'Person';
+Person.prototype.skill = ['sing','game'];
+Person.prototype.getName = function(){
+    return this.name
+}
+
+function Child() {}
+
+Child.prototype = new Person();
+
+var child1 = new Child();
+var child2 = new Child();
+
+console.log(child1.name,child1.skill,child1.getName());
+child1.name = 'child1';
+child1.skill.push('read');
+console.log(child1.name,child1.skill,child1.getName());
+console.log(child2.name,child2.skill,child2.getName());
+console.log(child1 instanceof Child,child1 instanceof Person)
