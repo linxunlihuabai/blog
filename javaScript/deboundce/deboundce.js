@@ -5,10 +5,12 @@ function deboundce(fn,wait,immediate){
         const context = this;
         const args = arguments;
         clearTimeout(timeout);
-        if(immediate && !timeout){
-            result = fn.apply(context,args);
+        if(immediate){
+            if(!timeout){
+                result = fn.apply(context,args);
+            }
+
             timeout = setTimeout(() => {
-                fn.apply(context,args);
                 timeout = null;
             }, wait);
         }else{
@@ -36,7 +38,7 @@ function setContainer(e) {
     container.innerText = count++;
 }
 
-var deboundceFn = deboundce(setContainer, 1000);
+var deboundceFn = deboundce(setContainer, 1000, true);
 
 
 document.onmousemove = deboundceFn;

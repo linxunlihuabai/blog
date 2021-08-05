@@ -1,0 +1,6 @@
+# Script的defer、async
+
+1. 普通的script脚本加载和执行都会阻塞html解析，带有defer和async的script在加载过程中不会阻塞html解析。
+2. defer的script加载不会阻塞HTML解析，并且加载完不会立即执行，而是等到html都解析完了再执行（在DOMContentLoaded之前，所以会阻塞DOMContentLoaded），同时它会按照script的加载顺序执行
+3. async的script加载不会阻塞HTML解析，但是加载完会立即执行，同时它不一定会按照加载顺序执行，只要加载完就立即执行。不一定阻塞DOMContentLoaded，主要看script什么时候加载完。
+4. 还可以通过动态插入script标签的方式，也可以实现异步加载脚本。加载完立即执行
