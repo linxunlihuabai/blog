@@ -43,3 +43,7 @@ var deboundceFn = deboundce(setContainer, 1000, true);
 
 document.onmousemove = deboundceFn;
 cancel.onclick = deboundceFn.onCancel;
+
+// 防抖的使用场景？
+
+// 对于一些频繁触发的事件，减少触发频率，以此进行优化。比如搜索框的输入

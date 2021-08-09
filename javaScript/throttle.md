@@ -1,0 +1,100 @@
+# 节流
+
+节流也是用来防止事件频繁触发的一种优化方式，它是持续触发的时候，每n秒执行一次。
+
+时间戳版本
+
+特点：第一次触发会立即执行，如果时间间隔内停止触发就不会执行。
+
+```js
+function throttle(fn, wait) {
+  let prevTime = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - prevTime > wait) {
+      prevTime = now;
+      fn.apply(this, args);
+    }
+  }
+}
+```
+
+定时器版本
+
+特点：第一次触发不会立即执行，但是在时间间隔内停止触发，还是会执行最后一次。
+
+```js
+function throttle(fn, wait) {
+  let timer;
+  return function (...args) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null;
+        fn.apply(this, args)
+      }, wait)
+    }
+  }
+}
+```
+
+双剑合璧版
+
+特点：吸收了时间戳和定时器版本的特点，一开始触发会立即执行，间隔内停止触发后，等时间到了还会执行。
+
+```js
+function throttle(fn, wait) {
+  let prevTime = 0;
+  let timer;
+  return function (...args) {
+    const now = Date.now();
+    const remaining = wait - (now - prevTime);
+    if (remaining <= 0) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      prevTime = now;
+      fn.apply(this, args);
+    } else if (!timer) {
+      timer = setTimeout(() => {
+        prevTime = Date.now();
+        timer = null;
+        fn.apply(this, args);
+      }, remaining)
+    }
+  }
+}
+```
+
+双剑合璧版优化
+
+特点：在双剑合璧版的基础上增加了控制是否立即执行和尾部执行参数(注意：只能关闭一项，全关闭就都不能执行了)。
+
+```js
+function throttle(fn, wait, options) {
+  const { leading, trailing } = options
+  let prevTime = 0;
+  let timer;
+  return function (...args) {
+    const now = Date.now();
+    if (!prevTime && leading === false) {
+      prevTime = now;
+    }
+    const remaining = wait - (now - prevTime);
+    if (remaining <= 0) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      prevTime = now;
+      fn.apply(this, args);
+    } else if (!timer && trailing !== false) {
+      timer = setTimeout(() => {
+        prevTime = leading === false ? 0 : Date.now();
+        timer = null;
+        fn.apply(this, args);
+      }, remaining)
+    }
+  }
+}
+```
