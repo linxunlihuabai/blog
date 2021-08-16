@@ -7,7 +7,7 @@
 
 ## animation 配合 @keyframes 
 
-1. animation的属性分别是动画名(也就是@keyframes 后面的名称)、动画时长、过渡方式、延迟、动画次数、动画方向、填充模式、是否暂停
+1. animation的属性分别是动画名(也就是@keyframes 后面的名称 name)、动画时长(during)、过渡方式(timing-function)、延迟(delay)、重复次数(iteration-count)、动画方向(direction)、填充模式(fill-mode)、是否暂停(play-state)
 2. @keyframes 定义动画的关键帧，控制动画的中间步骤。语法如下：
 
 用百分比表示关键帧的时间点，from 等价于0%，to 等价于100%

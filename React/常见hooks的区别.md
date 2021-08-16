@@ -1,0 +1,11 @@
+# useCallback和useMemo的区别？
+
+useCallback和useMemo都是用来缓存数据的，都接受一个函数和依赖数组
+只不过useCallback返回的是函数（props浅比较），useMemo返回的是函数return的值（适用于高计算量的值，缓存计算结果）
+
+一般用于hooks的性能优化，减少不必要的渲染和计算，但是不是什么都用这两个包裹，因为useCallback和useMemo本身就消耗性能，写太多性能反而会不好（因为有判断是否命中缓存的逻辑和缓存的内存开销）。
+
+# useEffect和useLayoutEffect
+
+useEffect是异步执行，当页面渲染完后再执行
+useLayoutEffect 是同步执行，在页面渲染前执行，会阻塞页面渲染
