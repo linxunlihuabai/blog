@@ -28,9 +28,9 @@ CSS选择器：
 
 4. CSS优先级算法如何计算？
 
-tag: 1
-class: 10
-id: 100
+tag: 0001
+class: 0010
+id: 0100
 行内样式: 1000
 !important 最高优先级
 再多的tag优先级相加也不会超过class
