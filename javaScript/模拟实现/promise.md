@@ -36,3 +36,53 @@ promise.prototype.then = function (onFulfilled) {
   })
 }
 ```
+
+# 模拟实现 all
+
+```js
+Promise.all2 = (promises) => {
+    return new Promise((resolve, reject) => {
+        let result = [];
+        let num = 0;
+        promises.forEach((promise, index) => {
+            promise.then((value) => {
+                result[index] = value;
+                num++;
+                if (num === promises.length) {
+                    resolve(result);
+                }
+            }, (reason) => {
+                reject(reason);
+            })
+        })
+    })
+}
+```
+
+# 模拟实现 race
+
+```js
+Promise.race2 = (promises) => {
+    return new Promise((resolve, reject) => {
+        promises.forEach((promise, index) => {
+            promise.then((value) => {
+              resolve(value);
+            }, (reason) => {
+                reject(reason);
+            })
+        })
+    })
+}
+```
+
+# 模拟实现 allSettled
+
+```js
+Promise.allSettled2 = (promises) => {
+  const resolveHandler = (value) => ({status: 'fulfilled',value});
+  const rejectHandler = (reason) => ({status: 'rejected',reason});
+  
+  const temp = promises.map(promise=>promise.then(resolveHandler, rejectHandler));
+    return Promise.all(temp);
+}
+```

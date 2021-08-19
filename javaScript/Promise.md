@@ -11,6 +11,7 @@ Promise是一种异步解决方案，它的出现解决了之前回调函数无�
 5. Promise.reject(error) - 创建一个结果为error的rejected的promise, 相当于 new Promise((resolve, reject) => reject(error))。
 
 可以简单的实现Promise.allSettled
+
 ```js
 Promise.allSettled2 = function(promises){
     const resolveHandler = value => ({status: 'fulfilled', value }); 
