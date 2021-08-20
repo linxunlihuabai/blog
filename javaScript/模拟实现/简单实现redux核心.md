@@ -21,6 +21,9 @@ function createStore(initState, reducer){
 
     function subscribe(listener){
         listeners.push(listener);
+        return ()=>{
+            listeners = listeners.filter(l=>l!==listener);
+        }
     }
 
     return {getState,dispatch,subscribe}
