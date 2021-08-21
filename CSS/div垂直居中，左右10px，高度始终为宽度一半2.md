@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html>
 
@@ -51,7 +52,8 @@
 </body>
 
 </html>
+```
 
-<!-- 备注：
+备注：
 1. padding-bottom时相对于父元素的width
-2. 绝对定位的元素的宽高时相对于父元素的 padding-box 。如果不是绝对定位则是相对于父元素的 content-box -->
+2. 绝对定位的元素的宽高时相对于父元素的 padding-box 。如果不是绝对定位则是相对于父元素的 content-box
