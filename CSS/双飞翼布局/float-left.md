@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html>
 
@@ -18,30 +19,45 @@
 
     .outer {
       height: 100%;
-      display: grid;
-      grid-template-columns:100px 1fr 100px;
+      padding: 0 200px;
+    }
+
+    .outer div{
+      position: relative;
+      float: left;
     }
 
     .left {
+      width: 200px;
       background-color: yellow;
+      margin-left: -100%;
+      height: 100%;
+      left: -200px;
     }
 
     .right {
+      margin-left: -200px;
+      right: -200px;
+      width: 200px;
       background-color: red;
+      height: 100%;
     }
 
     .middle {
       background-color: blue;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 
 <body>
   <div class="outer">
-    <div class="left">left</div>
     <div class="middle">middle</div>
+    <div class="left">left</div>
     <div class="right">right</div>
   </div>
 </body>
 
 </html>
+```

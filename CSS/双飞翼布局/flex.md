@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html>
 
@@ -18,44 +19,33 @@
 
     .outer {
       height: 100%;
-      padding: 0 200px;
-    }
-
-    .outer div{
-      position: relative;
-      float: left;
+      display: flex;
     }
 
     .left {
       width: 200px;
       background-color: yellow;
-      margin-left: -100%;
-      height: 100%;
-      left: -200px;
     }
 
     .right {
-      margin-left: -200px;
-      right: -200px;
       width: 200px;
       background-color: red;
-      height: 100%;
     }
 
     .middle {
+      flex-grow: 1;
       background-color: blue;
-      width: 100%;
-      height: 100%;
     }
   </style>
 </head>
 
 <body>
   <div class="outer">
-    <div class="middle">middle</div>
     <div class="left">left</div>
+    <div class="middle">middle</div>
     <div class="right">right</div>
   </div>
 </body>
 
 </html>
+```
