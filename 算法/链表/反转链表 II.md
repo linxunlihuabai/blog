@@ -43,3 +43,31 @@ function reverse(head){
     return pre;
 }
 ```
+
+进阶：一次遍历完成（穿针引线、头插法）
+
+思路：找到第一个要反转的节点的前一个节点pre和第一个要反转的节点curr，接着将curr后面的元素next移动到pre后面。接着根据left和right重复上面的操作。
+
+图如下(待补充)：
+
+```js
+var reverseBetween = function(head, left, right) {
+    let dummy =new ListNode(-1);
+    dummy.next = head;
+    let pre = dummy;
+    for(let i=0;i<left-1;i++){
+        pre = pre.next
+    }
+
+    let curr = pre.next;
+
+    for(let j=0;j<right-left;j++){
+        const next = curr.next;
+        curr.next = next.next;
+        next.next = pre.next;
+        pre.next = next;
+    }
+
+    return dummy.next
+};
+```

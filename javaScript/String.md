@@ -10,3 +10,11 @@
 2. includes(str): 判断是否包含str，返回布尔值
 3. startWith(str): 判断是否以str开头，返回布尔值 
 4. endWith(str): 判断是否以str结尾，返回布尔值 
+
+# escape,encodeURI,encodeURIComponent有什么区别?
+
+escape是用来编码字符串的，encodeURI和encodeURIComponent是用来编码URI的。encodeURIComponent的编码范围比encodeURI大，encodeURI对一些保留字符不会进行编码
+
+如果要编码整个URL，用encodeURI。
+
+如果要编码URL的参数，用encodeURIComponent。
