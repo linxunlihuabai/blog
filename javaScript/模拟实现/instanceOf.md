@@ -15,6 +15,7 @@ function instanceOf(obj, constructor){
 ```
 
 还有一个简单写法（a.isPrototypeOf(b)用来判断a对象是否在b对象的原型链上）
+
 ```js
 function instanceOf(obj, constructor){
     return constructor.prototype.isPrototypeOf(obj)

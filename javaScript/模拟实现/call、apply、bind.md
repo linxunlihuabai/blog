@@ -73,8 +73,8 @@ Function.prototype.bind2 =function(){
   var context = args.shift();
   var boundFn = function(){
     var newArgs = Array.prototype.slice.call(arguments);
-
     // 判断新函数的调用方式(直接调用or构造函数调用)
+    // 如果返回的函数作为构造函数调用，则忽略bind的this，this执行构造函数的实例。
     return self.apply(this instanceof boundFn ?  this : context, args.concat(newArgs));
   }
   // 让实例可以取到原函数的原型上的属性
